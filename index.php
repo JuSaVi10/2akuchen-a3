@@ -33,6 +33,7 @@ if(empty($_POST['email'])||empty($_POST['password']))
 
             }else{
                 $email = $_POST['email'];
+                $password = '';
                 echo 'contraseña incorrecta';
             }
 
@@ -55,7 +56,7 @@ if(empty($_POST['email'])||empty($_POST['password']))
     <h1>Área privada</h1>
     <form class="col s12" action="" method="post">
     <input type="email" placeholder="Email" name="email" value="<?php echo $email?>">
-    <input type="password" placeholder="Contraseña" name="password">
+    <input type="password" placeholder="Contraseña" name="password" <?php echo $password?>" >
     <input type="submit" value="Acceder" name="bbtn_enviar">
     </form>
 
