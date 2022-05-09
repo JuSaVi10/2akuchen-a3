@@ -87,7 +87,7 @@ if(!empty($_POST))
 </head>
 <body>
     <div class="class_h2">
-        <h2 style="font-weight:normal;">REGISTRO</h2>
+        <h2>REGISTRO</h2>
         <div class="uvc-heading-spacer line_only" >
             <span class="uvc-headings-line" ></span>
         </div>
@@ -144,7 +144,8 @@ if(!empty($_POST))
             <label for="password2">Repetir contraseña</label>
             </div>
         </div>
-        <input type="submit" value="Acceder" name="bbtn_enviar">
+        
+        <input type="submit" value="Registrar" name="bbtn_enviar">
 
         <div class="row">
             <div class="col s12 m6 l4">

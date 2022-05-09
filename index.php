@@ -43,21 +43,50 @@ if(empty($_POST['email'])||empty($_POST['password']))
 }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type ="text/css" href="css/css_registro.css" screen = "all" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <title>Área privada</title>
 </head>
 <body>
-    <h1>Área privada</h1>
+    <h1>ÁREA PRIVADA</h1>
+    <div class="uvc-heading-spacer line_only" >
+        <span class="uvc-headings-line" ></span>
+    </div>
+
+<div class = "container">
     <form class="col s12" action="" method="post">
-    <input type="email" placeholder="Email" name="email" value="<?php echo $email?>">
-    <input type="password" placeholder="Contraseña" name="password">
-    <input type="submit" value="Acceder" name="bbtn_enviar">
+
+        <div class="row">
+            <div class="input-field col s12 m6 l4">
+                <input placeholder="Email" name="email" class="email" type="email" value="<?php echo $email?>">
+                <label for="email">Email</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12 m6 l4">
+            <input placeholder="Contraseña" name="password" type="password" value="<?php echo $password?>">
+            <label for="password">Contraseña</label>
+            </div>
+        </div>
+
+        <input type="submit" value="Acceder" name="bbtn_enviar">
+
+        <div class="row">
+            <div class="col s12 m6 l4">
+            <?php echo isset($alert) ? $alert : '' ?>
+            </div>
+        </div>
+        
     </form>
+</div>
 
 </body>
 </html>
