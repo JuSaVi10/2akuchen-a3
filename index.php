@@ -33,6 +33,7 @@ if(empty($_POST['email'])||empty($_POST['password']))
 
             }else{
                 $email = $_POST['email'];
+                $password = '';
                 echo 'contraseña incorrecta';
             }
 
