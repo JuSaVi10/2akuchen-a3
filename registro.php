@@ -97,49 +97,49 @@ if(!empty($_POST))
    
         <form id="registro" class="col s12" action="" method="post">
         <div class="row">
-            <div class="input-field col s6">
+            <div class="input-field col s12 m6 l4">
                 <input placeholder="Nombre" name="nombre" class="nombre" type="text" value="<?php echo $nombre?>">
                 <label for="nombre">Nombre</label>
             </div>
         </div>
 
         <div class="row">
-            <div class="input-field col s6">
+            <div class="input-field col s12 m6 l4">
             <input placeholder="Nombre de la empresa" name="nombre_empresa" type="text" value="<?php echo $empresa?>">
             <label for="nombre_empresa">Nombre de la empresa</label>
             </div>
         </div>
 
         <div class="row">
-            <div class="input-field col s6">
+            <div class="input-field col s12 m6 l4">
             <input placeholder="CIF" name="cif" type="text" value="<?php echo $cif?>">
             <label for="cif">CIF</label>
             </div>
         </div>
 
         <div class="row">
-            <div class="input-field col s6">
+            <div class="input-field col s12 m6 l4">
             <input placeholder="Dirección" name="direccion" type="text" value="<?php echo $direccion?>">
             <label for="direccion">Dirección</label>
             </div>
         </div>
 
         <div class="row">
-            <div class="input-field col s6">
+            <div class="input-field col s12 m6 l4">
             <input placeholder="Email" name="email" type="text" value="<?php echo $email?>">
             <label for="email">Email</label>
             </div>
         </div>
 
         <div class="row">
-            <div class="input-field col s6">
+            <div class="input-field col s12 m6 l4">
             <input placeholder="Contraseña" name="password" type="password" value="<?php echo $password?>">
             <label for="password">Contraseña</label>
             </div>
         </div>
 
         <div class="row">
-            <div class="input-field col s6">
+            <div class="input-field col s12 m6 l4">
             <input placeholder="Repetir contraseña" name="password2" type="password" value="<?php echo $password2?>">
             <label for="password2">Repetir contraseña</label>
             </div>
@@ -147,7 +147,7 @@ if(!empty($_POST))
         <input type="submit" value="Acceder" name="bbtn_enviar">
 
         <div class="row">
-            <div class="col s6">
+            <div class="col s12 m6 l4">
             <?php echo isset($alert) ? $alert : '' ?>
             </div>
         </div>
