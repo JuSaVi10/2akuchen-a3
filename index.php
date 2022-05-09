@@ -36,6 +36,22 @@ if(!empty($_POST))
 
         if($result>0){
             header("Location: hola.html");
+        }else{
+            $query = mysqli_query($con,"SELECT * FROM tabla_usuarios WHERE  email = '$email'");
+            $result = mysqli_fetch_array($query);
+            if($result>0){
+                $query = mysqli_query($con,"SELECT * FROM tabla_usuarios WHERE  email = '$email' and password = '$password'");
+                $result = mysqli_fetch_array($query);
+                if($result>0){
+                    echo 'Este usuario está pendiente de confirmación';
+
+                }else{
+                    echo 'contraseña incorrecta';
+                }
+
+            }else{
+                echo 'el usuario no existe';
+            }
         }
     }
 }
