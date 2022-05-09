@@ -87,7 +87,7 @@ if(!empty($_POST))
 
     <div class="row">
    
-    <form class="registro" action="" method="post">
+    <form id="registro" class="col s12" action="" method="post">
     <input type="text" placeholder="Nombre" name="nombre" value="<?php echo $nombre?>"> 
     <input type="text" placeholder="Nombre de Empresa" name="nombre_empresa" value="<?php echo $empresa?>">
     <input type="text" placeholder="CIF" name="cif" value="<?php echo $cif?>">
