@@ -3,10 +3,10 @@
  
 $host = 'localhost';
 $user = 'root';
-$pass = '';
+$pass = 'root';
 $db = 'usuarios';
 
-$con = mysqli_connect($host,$user,$pass,$db); 
+$con = mysqli_connect($host,$user,$pass,$db);
 
 if(!$con){
     echo "Error en la conexión";
