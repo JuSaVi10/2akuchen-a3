@@ -80,14 +80,13 @@ if(!empty($_POST))
 
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <title>Área privada</title>
+    <title>Registro</title>
 </head>
 <body>
-    <h1>Área privada</h1>
+    <h1>Registro</h1>
 
-    <form class="login" action="" method="post">
-    <input type="email" placeholder="Email" name="email">
-    <input type="password" placeholder="Contraseña" name="password">
+    <div class="row">
+   
     <form class="registro" action="" method="post">
     <input type="text" placeholder="Nombre" name="nombre" value="<?php echo $nombre?>"> 
     <input type="text" placeholder="Nombre de Empresa" name="nombre_empresa" value="<?php echo $empresa?>">
@@ -95,7 +94,7 @@ if(!empty($_POST))
     <input type="text" placeholder="Dirección" name="direccion" value="<?php echo $direccion?>">
     <input type="email" placeholder="Email" name="email" value="<?php echo $email?>">
     <input type="password" placeholder="Contraseña" name="password" value="<?php echo $password?>">
-    <input type="password" placeholder="Contraseña" name="password2" value="<?php echo $password2?>">
+    <input type="password" placeholder="Repetir contraseña" name="password2" value="<?php echo $password2?>">
     <input type="submit" value="Acceder" name="bbtn_enviar">
     </form>
 

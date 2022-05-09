@@ -9,13 +9,9 @@
 </head>
 <body>
     <h1>Área privada</h1>
-    <form class="registro" action="" method="post">
-    <input type="text" placeholder="Nombre" name="nombre">
-    <input type="text" placeholder="Nombre de Empresa" name="nombre_empresa">
-    <input type="text" placeholder="Dirección" name="direccion">
+    <form class="col s12" action="" method="post">
     <input type="email" placeholder="Email" name="email">
     <input type="password" placeholder="Contraseña" name="password">
-    <input type="submit" value="Acceder" name="bbtn_enviar">
     </form>
 </body>
 </html>
