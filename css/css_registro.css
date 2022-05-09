@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Mada";
+  src: url("../tipografia/Mada/Mada-ExtraLight.ttf");
+}
+
 .class_h2{
     text-align: center;
 }
@@ -6,6 +11,9 @@ h2{
     margin: 0;
     padding: 0;
     line-height: normal;
+    font-family: "Mada";
+    font-weight: 300;
+    letter-spacing: 2px;
 }
 
 .uvc-heading-spacer{
@@ -42,4 +50,5 @@ h2{
     border: 1px solid #617c42;
   }
 
+ 
   
