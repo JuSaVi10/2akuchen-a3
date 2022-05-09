@@ -11,7 +11,7 @@ if(!empty($_POST))
     $alert = '';
     if(empty($_POST['nombre'])||empty($_POST['nombre_empresa'])||empty($_POST['cif'])||empty($_POST['direccion'])||empty($_POST['email'])||empty($_POST['password']||empty($_POST['password2'])))
     {
-        $alert ='<p class = "msg_error">Todos los campos son obligatorios.</p>';
+        $alert ='<div class="bar error"> <p class = "msg_error">Todos los campos son obligatorios.</p> </div>';
         $nombre =  $_POST['nombre'] ;
         $empresa =$_POST['nombre_empresa'];
         $cif = $_POST['cif'];
@@ -33,7 +33,7 @@ if(!empty($_POST))
         $result = mysqli_fetch_array($query);
 
         if($result > 0){
-            $alert = '<p class = "msg_error">El correo o el cif ya está registrado.</p>';
+            $alert = '<div class="bar error"> <p class = "msg_error">El correo o el cif ya está registrado.</p>  </div>';
         }else{
             $patronCIF= "/^([ABCDEFGHJKLMNPQRSUVW])(\d{7})([0-9A-J])$/";
             if(!preg_match($patronCIF,$_POST['cif'])){
@@ -44,16 +44,15 @@ if(!empty($_POST))
                 $email = $_POST['email'];
                 $password =$_POST['password'];
                 $password2 =$_POST['password2'];
-                $alert = '<p class = "msg_error">Contenido del cif no es válido</p><br>';
+                $alert = '<div class="bar error"> <p class = "msg_error">Contenido del cif no es válido</p> </div> <br>';
             }else{
-                $alert = '<p class = "msg_error">Contenido del cif si es válido</p><br>';
                 if($password == $password2){
                     $query_insert = mysqli_query($con, "INSERT INTO tabla_usuarios(nombre,nombre_empresa,cif,direccion,email,password)VALUES('$nombre','$empresa','$cif','$direccion','$email','$password')");
                     }else{
-                        $alert = '<p class = "msg_error">Las contraseñas no coinciden</p>';
+                        $alert = '<div class="bar error"> <p class = "msg_error">Las contraseñas no coinciden</p> </div>';
                     }
                     if($query_insert){
-                        $alert = '<p class = "msg_error">Usuario registrado correctamente espere su confirmación.</p>';
+                        $alert = '<div class="bar success"> <p class = "msg_error">Usuario registrado correctamente espere su confirmación.</p> </div>';
                         $nombre ='';
                         $empresa ='';
                         $cif = '';
@@ -62,7 +61,7 @@ if(!empty($_POST))
                         $password ='';
                         $password2 ='';
                     }else{
-                        //$alert = '<p class = "msg_error">Error al crear al usuario, compruebe los campos</p>';
+                        $alert = '<div class="bar error"> <p class = "msg_error">Error al crear al usuario, compruebe los campos</p> </div>';
                     }
                 }
             }
@@ -149,7 +148,7 @@ if(!empty($_POST))
 
         <div class="row">
             <div class="col s6">
-            <div class="bar error"> <?php echo isset($alert) ? $alert : '' ?></div>
+            <?php echo isset($alert) ? $alert : '' ?>
             </div>
         </div>
         
