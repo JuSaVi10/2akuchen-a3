@@ -35,8 +35,8 @@ if(!empty($_POST))
         if($result > 0){
             $alert = '<p class = "msg_error">El correo o el cif ya está registrado.</p>';
         }else{
-            $patronCIP= "/^([ABCDEFGHJKLMNPQRSUVW])(\d{7})([0-9A-J])$/";
-            if(!preg_match($patronCIP,$_POST['cif'])){
+            $patronCIF= "/^([ABCDEFGHJKLMNPQRSUVW])(\d{7})([0-9A-J])$/";
+            if(!preg_match($patronCIF,$_POST['cif'])){
                 $nombre =  $_POST['nombre'] ;
                 $empresa =$_POST['nombre_empresa'];
                 $cif = $_POST['cif'];
@@ -45,25 +45,28 @@ if(!empty($_POST))
                 $password =$_POST['password'];
                 $password2 =$_POST['password2'];
                 $alert = '<p class = "msg_error">Contenido del cif no es válido</p><br>';
-            }
-            if($password == $password2){
-            $query_insert = mysqli_query($con, "INSERT INTO tabla_usuarios(nombre,nombre_empresa,cif,direccion,email,password)VALUES('$nombre','$empresa','$cif','$direccion','$email','$password')");
             }else{
-                $alert = '<p class = "msg_error">Las contraseñas no coinciden</p>';
+                $alert = '<p class = "msg_error">Contenido del cif si es válido</p><br>';
+                if($password == $password2){
+                    $query_insert = mysqli_query($con, "INSERT INTO tabla_usuarios(nombre,nombre_empresa,cif,direccion,email,password)VALUES('$nombre','$empresa','$cif','$direccion','$email','$password')");
+                    }else{
+                        $alert = '<p class = "msg_error">Las contraseñas no coinciden</p>';
+                    }
+                    if($query_insert){
+                        $alert = '<p class = "msg_error">Usuario registrado correctamente espere su confirmación.</p>';
+                        $nombre ='';
+                        $empresa ='';
+                        $cif = '';
+                        $direccion = '';
+                        $email ='';
+                        $password ='';
+                        $password2 ='';
+                    }else{
+                        //$alert = '<p class = "msg_error">Error al crear al usuario, compruebe los campos</p>';
+                    }
+                }
             }
-            if($query_insert){
-                $alert = '<p class = "msg_error">Usuario registrado correctamente espere su confirmación.</p>';
-                $nombre ='';
-                $empresa ='';
-                $cif = '';
-                $direccion = '';
-                $email ='';
-                $password ='';
-                $password2 ='';
-            }else{
-                $alert = '<p class = "msg_error">Error al crear al usuario, compruebe los campos</p>';
-            }
-        }
+            
     }
    
     
