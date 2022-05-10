@@ -13,13 +13,13 @@ if(!empty($_POST)){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Usuarios sin Confirmar</title>
+    <title>Usuarios Confirmados</title>
 </head>
 <body>
-    <h1>Lista de Usuarios sin Confirmar</h1>
+    <h1>Lista de Usuarios Confirmados</h1>
     
         <?php
-            $query = mysqli_query($con, "SELECT tabla_usuarios.id,tabla_usuarios.nombre,tabla_usuarios.nombre_empresa,tabla_usuarios.cif,tabla_usuarios.direccion,tabla_usuarios.email,tabla_usuarios.password FROM tabla_usuarios WHERE tabla_usuarios.estado = 'Pendiente'");
+            $query = mysqli_query($con, "SELECT tabla_usuarios.id,tabla_usuarios.nombre,tabla_usuarios.nombre_empresa,tabla_usuarios.cif,tabla_usuarios.direccion,tabla_usuarios.email,tabla_usuarios.password FROM tabla_usuarios WHERE tabla_usuarios.estado = 'Confirmado'");
             $result = mysqli_num_rows($query);
             
             if($result>0){
@@ -49,21 +49,21 @@ if(!empty($_POST)){
             <td><?php echo $data['email'] ?></td>
             <td><?php echo $data['password'] ?></td>
             <td>
-                <a class= "link-delete" href="rechazar_usuarios.php?id=<?php echo $data['id'];?>">Rechazar</a>
-                <a class="link-edit" href = "aceptar_usuarios.php?id=<?php echo $data['id'];?>">Aceptar</a>
+                <a class= "link-delete" href="eliminar_confirmados.php?id=<?php echo $data['id'];?>">Eliminar</a>
+                <a class="link-edit" href = "editar_confirmados.php?id=<?php echo $data['id'];?>">Aceptar</a>
                 
             </td>
         </tr>
-        
+       
 
         <?php
                 }
             }else{
-                echo "No hay usuarios sin confirmar";
+                echo "No hay usuarios Confirmados";
             }
         ?>
     
-    </table>
+</table>
    
 </body>
 </html>
