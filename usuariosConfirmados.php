@@ -1,22 +1,20 @@
 <?php
 include "conexion.php";
-if(!empty($_POST)){
-
-}
-
 ?>
-
-
 
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Usuarios Confirmados</title>
+    <title>Usuarios confirmados</title>
 </head>
 <body>
-    <h1>Lista de Usuarios Confirmados</h1>
+<?php
+    include("header.html");
+?>
+
+    <h2>Lista de usuarios confirmados</h2>
     
         <?php
             $query = mysqli_query($con, "SELECT tabla_usuarios.id,tabla_usuarios.nombre,tabla_usuarios.nombre_empresa,tabla_usuarios.cif,tabla_usuarios.direccion,tabla_usuarios.email,tabla_usuarios.password FROM tabla_usuarios WHERE tabla_usuarios.estado = 'Confirmado'");
@@ -59,7 +57,7 @@ if(!empty($_POST)){
         <?php
                 }
             }else{
-                echo "No hay usuarios Confirmados";
+                echo "No hay usuarios para confirmar";
             }
         ?>
     

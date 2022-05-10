@@ -1,29 +1,21 @@
 <?php
 include "conexion.php";
-if(!empty($_POST)){
-
-}
-
 ?>
-
-
 
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Usuarios sin Confirmar</title>
+    <title>Usuarios pendientes</title>
 </head>
 <body>
     
 <?php
     include("header.html");
 ?>
-
-    <h1>Lista de Usarios sin Confirmar</h1>
     <table>
-    <h1>Lista de Usuarios sin Confirmar</h1>
+    <h2>Lista de usuarios pendientes</h2>
     
         <?php
             $query = mysqli_query($con, "SELECT tabla_usuarios.id,tabla_usuarios.nombre,tabla_usuarios.nombre_empresa,tabla_usuarios.cif,tabla_usuarios.direccion,tabla_usuarios.email,tabla_usuarios.password FROM tabla_usuarios WHERE tabla_usuarios.estado = 'Pendiente'");
@@ -66,7 +58,7 @@ if(!empty($_POST)){
         <?php
                 }
             }else{
-                echo "No hay usuarios sin confirmar";
+                echo "No hay usuarios pendientes";
             }
         ?>
     
