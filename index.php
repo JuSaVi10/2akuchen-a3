@@ -15,8 +15,6 @@ if(empty($_POST['email'])||empty($_POST['password']))
 
 }else{
     include_once "conexion.php";
-    $email = $_POST['email'];
-    $password =$_POST['password'];
     $query = mysqli_query($con,"SELECT * FROM tabla_usuarios WHERE  email = '$email' and password = '$password' and estado = 'Confirmado' ");
     $result = mysqli_fetch_array($query);
 
