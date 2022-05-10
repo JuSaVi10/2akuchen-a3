@@ -50,13 +50,14 @@ if(empty($_POST['email'])||empty($_POST['password']))
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
+    <link rel="stylesheet" type ="text/css" href="css/css.css" screen = "all" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
     <title>Área privada</title>
 </head>
 <body>
-    <div class="class_h3">
-        <h3>ÁREA PRIVADA</h3>
+    <div class="class_h2">
+        <h2>ÁREA PRIVADA</h2>
         <div class="uvc-heading-spacer line_only" >
             <span class="uvc-headings-line" ></span>
         </div>
