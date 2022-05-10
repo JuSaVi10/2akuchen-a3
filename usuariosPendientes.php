@@ -10,6 +10,11 @@ include "conexion.php";
     <title>Usuarios sin Confirmar</title>
 </head>
 <body>
+    
+<?php
+    include("header.html");
+?>
+
     <h1>Lista de Usarios sin Confirmar</h1>
     <table>
         <tr>

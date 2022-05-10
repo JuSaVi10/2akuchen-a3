@@ -16,14 +16,14 @@ header{
 
 h3{
     text-align: center;
-    color: white;
+    color: rgb(255, 255, 255);
     font-family: "Mada";
     font-size: 30px;
 }
 
 nav {
     width: 100%;
-    height: 50px;
+    height: 60px;
     background-color: coral;
 }
 
@@ -35,7 +35,7 @@ nav ul{
 nav ul a{
     font-family: "Mada";
     text-decoration: none;
-    color: white;
+    color: rgb(255, 255, 255);
     font-size: 20px;
     padding: 11px 14px 14px 14px;
 }
