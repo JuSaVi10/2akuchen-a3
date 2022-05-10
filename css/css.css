@@ -3,11 +3,11 @@
   src: url("../tipografia/Mada/Mada-ExtraLight.ttf");
 }
 
-.class_h2{
+.class_h3{
     text-align: center;
 }
 
-h2{
+h3{
     margin: 0;
     padding: 0;
     line-height: normal;
@@ -49,6 +49,4 @@ h2{
     background: #ecffd6;
     border: 1px solid #617c42;
   }
-
- 
-  
+   

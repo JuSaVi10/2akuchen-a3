@@ -79,15 +79,15 @@ if(!empty($_POST))
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" type ="text/css" href="css/css_registro.css" screen = "all" />
+    <link rel="stylesheet" type ="text/css" href="css/css.css" screen = "all" />
 
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <title>Registro</title>
 </head>
 <body>
-    <div class="class_h2">
-        <h2>REGISTRO</h2>
+    <div class="class_h3">
+        <h3>REGISTRO</h3>
         <div class="uvc-heading-spacer line_only" >
             <span class="uvc-headings-line" ></span>
         </div>

@@ -8,7 +8,7 @@ if(!empty($_POST))
 $alert = '';
 if(empty($_POST['email'])||empty($_POST['password']))
 {
-   echo'<p class = "msg_error">Todos los campos son obligatorios.</p>';
+    $alert = '<div class="bar error"> <p class = "msg_error">Todos los campos son obligatorios</p> </div>';
     $email = $_POST['email'];
     $password =$_POST['password'];
     
@@ -29,16 +29,16 @@ if(empty($_POST['email'])||empty($_POST['password']))
             $query = mysqli_query($con,"SELECT * FROM tabla_usuarios WHERE  email = '$email' and password = '$password'");
             $result = mysqli_fetch_array($query);
             if($result>0){
-                echo 'Este usuario está pendiente de confirmación';
+                $alert = '<div class="bar error"> <p class = "msg_error">Este usuario está pendiente de confirmación</p> </div>';
 
             }else{
                 $email = $_POST['email'];
                 $password = '';
-                echo 'contraseña incorrecta';
+                $alert = '<div class="bar error"> <p class = "msg_error">Contraseña incorrecta</p> </div>';
             }
 
         }else{
-            echo 'el usuario no existe';
+            $alert = '<div class="bar error"> <p class = "msg_error">El usuario no existe</p> </div>';
         }
     }
 }
@@ -51,14 +51,17 @@ if(empty($_POST['email'])||empty($_POST['password']))
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type ="text/css" href="css/css_registro.css" screen = "all" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <title>Área privada</title>
 </head>
 <body>
-    <h1>ÁREA PRIVADA</h1>
-    <div class="uvc-heading-spacer line_only" >
-        <span class="uvc-headings-line" ></span>
+    <div class="class_h3">
+        <h3>ÁREA PRIVADA</h3>
+        <div class="uvc-heading-spacer line_only" >
+            <span class="uvc-headings-line" ></span>
+        </div>
     </div>
 
 <div class = "container">
