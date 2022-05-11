@@ -24,7 +24,7 @@ include "conexion.php";
             
             if($result>0){
                 ?>
-        <table>
+        <table class="responsive-table">
             <thead>
                 <tr>
                     <th>Id</th>
