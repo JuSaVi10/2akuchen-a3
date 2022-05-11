@@ -5,7 +5,7 @@ if(!empty($_POST))
 $idusuario = $_POST['idusuario'];
 $query_update = mysqli_query($con,"UPDATE tabla_usuarios SET estado = 'Confirmado' WHERE id =$idusuario");
 if($query_update){
-    header("location:usuarios_sin_confirmar.php");
+    header("location:usuariosPendientes.php");
 }else{
     echo "Error al aceptar $idusuario";
 }
@@ -13,7 +13,7 @@ if($query_update){
 
 if(empty($_REQUEST['id']))
 {
-header("location:usuarios_sin_confirmar.php");
+header("location:usuariosPendientes.php");
 }else{
     $idusuario = $_REQUEST['id'];
     $query = mysqli_query($con, "SELECT tabla_usuarios.nombre,tabla_usuarios.nombre_empresa,tabla_usuarios.cif,tabla_usuarios.direccion,tabla_usuarios.email FROM tabla_usuarios WHERE tabla_usuarios.id = $idusuario");
@@ -31,7 +31,7 @@ header("location:usuarios_sin_confirmar.php");
 
         }
     }else{
-        header("location: usuarios_sin_confirmar.php");
+        header("location: usuariosPendientes.php");
     }
 }
 ?>
