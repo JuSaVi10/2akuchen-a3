@@ -36,6 +36,7 @@ if(!empty($_POST))
             $alert = '<div class="bar error"> <p class = "msg_error">El correo o el cif ya está registrado.</p>  </div>';
         }else{
             $patronCIF= "/^([ABCDEFGHJKLMNPQRSUVW])(\d{7})([0-9A-J])$/";
+            $patronPass = "/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/";
             if(!preg_match($patronCIF,$_POST['cif'])){
                 $nombre =  $_POST['nombre'] ;
                 $empresa =$_POST['nombre_empresa'];
