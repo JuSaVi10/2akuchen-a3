@@ -152,7 +152,7 @@ if(!empty($_POST))
             <label for="password2">Repetir contraseña</label>
             </div>
         </div>
-        <input type="submit" value="Acceder" name="bbtn_enviar">
+        <input type="submit" value="Registrar" name="bbtn_registrar">
 
         <div class="row">
             <div class="col s12 m6 l4">

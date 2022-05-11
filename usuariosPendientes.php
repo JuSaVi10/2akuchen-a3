@@ -16,15 +16,15 @@ include "conexion.php";
 <?php
     include("header.html");
 ?>
-    <h2>Lista de usuarios pendientes</h2>
-    
+    <h3 style="text-align:center;">LISTA DE USUARIOS PENDIENTES</h3>
+    <div class="container">
         <?php
             $query = mysqli_query($con, "SELECT tabla_usuarios.id,tabla_usuarios.nombre,tabla_usuarios.nombre_empresa,tabla_usuarios.cif,tabla_usuarios.direccion,tabla_usuarios.email,tabla_usuarios.password FROM tabla_usuarios WHERE tabla_usuarios.estado = 'Pendiente'");
             $result = mysqli_num_rows($query);
             
             if($result>0){
                 ?>
-        <table class="centered responsive-table">
+        <table class="striped grey lighten-1 centered responsive-table">
             <thead>
                 <tr>
                     <th>Id</th>
@@ -52,8 +52,8 @@ include "conexion.php";
                 <td><?php echo $data['email'] ?></td>
                 <td><?php echo $data['password'] ?></td>
                 <td>
-                    <a class= "link-delete" href="rechazar_usuarios.php?id=<?php echo $data['id'];?>">Rechazar</a>
-                    <a class="link-edit" href = "aceptar_usuarios.php?id=<?php echo $data['id'];?>">Aceptar</a>
+                <a class="waves-effect waves-light btn green" href ="aceptar_usuarios.php?id=<?php echo $data['id'];?>"><i class="material-icons left">check</i>Confirmar</a>
+                <a class="waves-effect waves-light btn red" href="eliminar_confirmados.php?id=<?php echo $data['id'];?>"><i class="material-icons left">delete</i>Rechazar</a>
                 </td>
             </tr>
         </tbody>
@@ -66,7 +66,8 @@ include "conexion.php";
         ?>
 
     </table>
-   
+    </div>
+
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </html>

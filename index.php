@@ -41,6 +41,10 @@ if(empty($_POST['email'])||empty($_POST['password']))
     }
 }
 }
+
+if(isset($_POST['bbtn_registrar'])){
+    header("Location: registro.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -81,7 +85,7 @@ if(empty($_POST['email'])||empty($_POST['password']))
         </div>
 
         <input type="submit" value="Acceder" name="bbtn_enviar">
-
+        <input type="submit" value="Registrar" name="bbtn_registrar">
         <div class="row">
             <div class="col s12 m6 l4">
             <?php echo isset($alert) ? $alert : '' ?>
