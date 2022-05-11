@@ -24,7 +24,7 @@ include "conexion.php";
             
             if($result>0){
                 ?>
-        <table class="responsive-table">
+        <table class="centered responsive-table">
             <thead>
                 <tr>
                     <th>Id</th>
@@ -37,12 +37,11 @@ include "conexion.php";
                     <th>Acciones</th>
                 </tr>
             </thead>
-           
 
         <?php
                 while($data = mysqli_fetch_array($query)){
-
         ?>
+
         <tbody>
             <tr>
                 <td><?php echo $data['id'] ?></td>
@@ -60,11 +59,12 @@ include "conexion.php";
         </tbody>
         
         <?php
-                }
+            }
             }else{
                 echo "No hay usuarios pendientes";
             }
         ?>
+
     </table>
    
 </body>
