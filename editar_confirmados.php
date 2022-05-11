@@ -16,19 +16,26 @@ if(!empty($_POST))
         $query = mysqli_query($con,"SELECT * FROM tabla_usuarios WHERE  email = '$email' or cif = '$cif' ");
         $result = mysqli_fetch_array($query);
 
-        
-            $query_update = mysqli_query($con, "UPDATE tabla_usuarios set nombre = '$nombre',nombre_empresa = '$empresa',cif = '$cif', direccion = '$direccion' ,email = '$email', password = '$password' WHERE id = $id");
+        $query_comprobar = mysqli_query($con,"SELECT * FROM tabla_usuarios WHERE  email = '$email' or cif = '$cif' and id is not '$id' ");
+        $result2 = mysqli_fetch_array($query);
+        if($result2 == 0){
+            $query_update = mysqli_query($con, "UPDATE tabla_usuarios set nombre = '$nombre',nombre_empresa = '$empresa',cif = '$cif', direccion = '$direccion' ,email = '$email', password = '$password' WHERE id = '$id' ");
             if($query_update){
-                header("location: usuarios_confirmados.php");
+                header("location: usuariosConfirmados.php");
             }else{
                 echo "Actualización fallida";
             }
+        }else{
+            echo "El correo o el cif pertenece a otro usuario";
+        }
+        
+           
         
 }
 }
 if(empty($_GET['id']))
 {
-    header("location: usuarios_confirmados.php");
+    header("location: usuariosConfirmados.php");
 }
 $id = $_GET['id'];
 $sql = mysqli_query($con,"SELECT tabla_usuarios.id,tabla_usuarios.nombre,tabla_usuarios.nombre_empresa,tabla_usuarios.cif,tabla_usuarios.direccion,tabla_usuarios.email,tabla_usuarios.password FROM tabla_usuarios WHERE id = $id");

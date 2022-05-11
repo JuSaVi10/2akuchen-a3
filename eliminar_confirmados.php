@@ -7,7 +7,7 @@ $idusuario = $_POST['idusuario'];
 
 $query_delete = mysqli_query($con,"DELETE from tabla_usuarios WHERE id =$idusuario");
 if($query_delete){
-    header("location: usuarios_confirmados.php");   
+    header("location: usuariosConfirmados.php");   
 }else{
 
     echo "Error al rechazar";
@@ -16,7 +16,7 @@ if($query_delete){
 
 if(empty($_REQUEST['id']))
 {
-    header("location: usuarios_confirmados.php");
+    header("location: usuariosConfirmados.php");
 }else{
     $idusuario = $_REQUEST['id'];
     $query = mysqli_query($con, "SELECT tabla_usuarios.nombre,tabla_usuarios.nombre_empresa,tabla_usuarios.cif,tabla_usuarios.direccion,tabla_usuarios.email,tabla_usuarios.estado FROM tabla_usuarios WHERE tabla_usuarios.id = $idusuario");
@@ -35,7 +35,7 @@ if(empty($_REQUEST['id']))
 
         }
     }else{
-        header("location: usuarios_confirmados.php");
+        header("location: usuariosConfirmados.php");
     }
 }
 ?>

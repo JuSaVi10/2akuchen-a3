@@ -6,6 +6,7 @@ $email ='';
 $password ='';
 $cif = '';
 $password2 = '';
+$valid = false;
 if(!empty($_POST))
 {
     $alert = '';
@@ -47,23 +48,29 @@ if(!empty($_POST))
                 $password2 =$_POST['password2'];
                 $alert = '<div class="bar error"> <p class = "msg_error">Contenido del cif no es válido</p> </div> <br>';
             }else{
-                if($password == $password2){
-                    $query_insert = mysqli_query($con, "INSERT INTO tabla_usuarios(nombre,nombre_empresa,cif,direccion,email,password)VALUES('$nombre','$empresa','$cif','$direccion','$email','$password')");
-                    }else{
-                        $alert = '<div class="bar error"> <p class = "msg_error">Las contraseñas no coinciden</p> </div>';
-                    }
-                    if($query_insert){
-                        $alert = '<div class="bar success"> <p class = "msg_error">Usuario registrado correctamente espere su confirmación.</p> </div>';
-                        $nombre ='';
-                        $empresa ='';
-                        $cif = '';
-                        $direccion = '';
-                        $email ='';
-                        $password ='';
-                        $password2 ='';
-                    }else{
-                        $alert = '<div class="bar error"> <p class = "msg_error">Error al crear al usuario, compruebe los campos</p> </div>';
-                    }
+                if(preg_match($patronPass,$_POST['password'])){
+                    $valid = true;
+                    if($password == $password2 && $valid == true){
+                        $query_insert = mysqli_query($con, "INSERT INTO tabla_usuarios(nombre,nombre_empresa,cif,direccion,email,password)VALUES('$nombre','$empresa','$cif','$direccion','$email','$password')");
+                        }else{
+                            $alert = '<div class="bar error"> <p class = "msg_error">Las contraseñas no coinciden</p> </div>';
+                        }
+                        if($query_insert){
+                            $alert = '<div class="bar success"> <p class = "msg_error">Usuario registrado correctamente espere su confirmación.</p> </div>';
+                            $nombre ='';
+                            $empresa ='';
+                            $cif = '';
+                            $direccion = '';
+                            $email ='';
+                            $password ='';
+                            $password2 ='';
+                        }else{
+                            $alert = '<div class="bar error"> <p class = "msg_error">Error al crear al usuario, compruebe los campos</p> </div>';
+                        }
+                }else{
+                    $alert = '<div class="bar error"> <p class = "msg_error">La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula.</p> </div> <br>';
+                }
+                
                 }
             }
             
