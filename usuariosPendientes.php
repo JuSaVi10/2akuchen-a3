@@ -12,10 +12,12 @@ include "conexion.php";
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
 <body>
-    
+
+<!-- Cabecera -->
 <?php
     include("header.html");
 ?>
+
     <h3 style="text-align:center;">LISTA DE USUARIOS PENDIENTES</h3>
     <div class="container">
         <?php
@@ -24,6 +26,7 @@ include "conexion.php";
             
             if($result>0){
         ?>
+
         <table class="striped grey lighten-1 centered responsive-table">
             <thead>
                 <tr>
@@ -52,10 +55,8 @@ include "conexion.php";
                 <td><?php echo $data['email'] ?></td>
                 <td><?php echo $data['password'] ?></td>
                 <td>
-                <!-- <a class="waves-effect waves-light btn green" href ="aceptar_usuarios.php?id=<?php echo $data['id'];?>"><i class="material-icons left">check</i>Confirmar</a> -->
                 <button href = "usuariosPendientes.php?<?php echo $id = $data['id'];?>" data-target="idModalAceptar" class="btn waves-effect waves-light btn modal-trigger green" type="submit">Confirmar<i class="material-icons right">check</i></button>
                 <button href = "usuariosPendientes.php?<?php echo $id = $data['id'];?>" data-target="idModal" class="btn waves-effect waves-light btn modal-trigger red" type="submit">Rechazar<i class="material-icons right">delete</i></button>
-
                 </td>
             </tr>
         </tbody>
@@ -130,6 +131,8 @@ include "conexion.php";
 </div>
 
 <?php
+
+// Boton Rechazar dentro del modal
  if(isset($_POST['btnDelete']))
  {
     $query_delete = "DELETE from tabla_usuarios WHERE id = $id";
@@ -141,7 +144,8 @@ include "conexion.php";
      }
  }
 
- if(isset($_POST['btnConfirm'])){
+// Boton Confirmar dentro del Modal 
+if(isset($_POST['btnConfirm'])){
     $query_update ="UPDATE tabla_usuarios SET estado = 'Confirmado' WHERE id =$id";
     $result = mysqli_query($con,$query_update);
     if($query_update){
