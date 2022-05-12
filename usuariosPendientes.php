@@ -52,9 +52,9 @@ include "conexion.php";
                 <td><?php echo $data['email'] ?></td>
                 <td><?php echo $data['password'] ?></td>
                 <td>
-                <a class="waves-effect waves-light btn green" href ="aceptar_usuarios.php?id=<?php echo $data['id'];?>"><i class="material-icons left">check</i>Confirmar</a>
-                
-                <button href = "editar_confirmados.php?<?php echo $id = $data['id'];?>" data-target="idModal" class="btn waves-effect waves-light btn modal-trigger red" type="submit">Rechazar<i class="material-icons right">delete</i></button>
+                <!-- <a class="waves-effect waves-light btn green" href ="aceptar_usuarios.php?id=<?php echo $data['id'];?>"><i class="material-icons left">check</i>Confirmar</a> -->
+                <button href = "usuariosPendientes.php?<?php echo $id = $data['id'];?>" data-target="idModalAceptar" class="btn waves-effect waves-light btn modal-trigger green" type="submit">Confirmar<i class="material-icons right">check</i></button>
+                <button href = "usuariosPendientes.php?<?php echo $id = $data['id'];?>" data-target="idModal" class="btn waves-effect waves-light btn modal-trigger red" type="submit">Rechazar<i class="material-icons right">delete</i></button>
 
                 </td>
             </tr>
@@ -123,7 +123,7 @@ include "conexion.php";
         <div class="modal-footer"> 
             <form method="post" action="">
                 <a class="btn modal-close red" href="usuariosPendientes.php">Cancelar</a>
-                <button class="btn waves-effect waves-light green" type="submit" name="btnDelete">Aceptar</button>
+                <button class="btn waves-effect waves-light green" type="submit" name="btnConfirm">Aceptar</button>
             </form>
         </div>
     </div>
@@ -136,10 +136,19 @@ include "conexion.php";
     $result = mysqli_query($con, $query_delete);
      if($query_delete){
         echo"<script>window.location.href='usuariosPendientes.php';</script>";
-
         }else{
         echo "Error al rechazar";
      }
+ }
+
+ if(isset($_POST['btnConfirm'])){
+    $query_update ="UPDATE tabla_usuarios SET estado = 'Confirmado' WHERE id =$id";
+    $result = mysqli_query($con,$query_update);
+    if($query_update){
+        echo"<script>window.location.href='usuariosPendientes.php';</script>";
+        }else{
+        echo "Error al aceptar ";
+    }
  }
 ?>
 </body>

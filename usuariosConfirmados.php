@@ -54,7 +54,7 @@ include "conexion.php";
                 <td>
                     <a class="waves-effect waves-light btn" href = "editar_confirmados.php?id=<?php echo $data['id'];?>"><i class="material-icons left">edit</i>Editar</a>
                     
-                    <button href = "editar_confirmados.php?<?php echo $id = $data['id'];?>" data-target="idModal" class="btn waves-effect waves-light btn modal-trigger red" type="submit">Rechazar<i class="material-icons right">delete</i></button>
+                    <button href = "usuariosConfirmados.php?<?php echo $id = $data['id'];?>" data-target="idModal" class="btn waves-effect waves-light btn modal-trigger red" type="submit">Rechazar<i class="material-icons right">delete</i></button>
                 </td>
             </tr>
         </tbody>
@@ -110,7 +110,6 @@ include "conexion.php";
     $result = mysqli_query($con, $query_delete);
      if($query_delete){
         echo"<script>window.location.href='usuariosConfirmados.php';</script>";
-
         }else{
         echo "Error al rechazar";
      }
