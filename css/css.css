@@ -49,3 +49,7 @@ h2{
     background: #ecffd6;
     border: 1px solid #617c42;
   }
+  #idModalAceptar, #idModal, #idModalEdit{
+    border-radius: 15px;
+    background-color: #617c42;
+  }
