@@ -7,7 +7,7 @@ include "conexion.php";
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type ="text/css" href="css/css.css" screen = "all" />
+    <link rel="stylesheet" type ="text/css" href="css/style-default.css" screen = "all" />
     <title>Usuarios confirmados</title>
     
 </head>
@@ -102,7 +102,7 @@ include "conexion.php";
 
 <div class = "container center">
    
-        <form id="registro" class="col s12 " action="" method="post">
+    <form id="registro" class="col s12 " action="" method="post">
         <input type="hidden" name="id" value = "<?php echo $id ?>">
         <div class="row">
             <div class="input-field col s12 m12 l12">
@@ -145,13 +145,9 @@ include "conexion.php";
             <label for="password">Contraseña</label>
             </div>
         </div>
+
         <a class="btn modal-close red" href="usuariosConfirmados.php">Cancelar</a>
         <button class="btn waves-effect waves-light green" type="submit" name="btnUpdate">Actualizar</button>
-        <div class="modal-footer"> 
-            <form method="post" action="">
-                
-            </form>
-        </div>
     </div>
 </div>
 
@@ -180,7 +176,6 @@ include "conexion.php";
             if(!preg_match($patronCIF,$_POST['cif'])){
                 $alert = '<div class="bar error"> <p class = "msg_error">El formato CIF no es válido</p> </div> <br>';            
             }
-
             
             if(!preg_match($patronPass,$_POST['password'])){
                 $alert = '<div class="bar error"> <p class = "msg_error">La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula.</p> </div> <br>';            
@@ -188,15 +183,15 @@ include "conexion.php";
  
             if($result2 == 10){
                 $query_update = mysqli_query($con, "UPDATE tabla_usuarios set nombre = '$nombre',nombre_empresa = '$nombre_empresa',cif = '$cif', direccion = '$direccion' ,email = '$email', password = '$password' WHERE id = '$id' ");
+                
                 if($query_update){
                     echo"<script>window.location.href='usuariosConfirmados.php';</script>";
                 }else{
                     echo "Actualización fallida";
+                
                 }
             }else{
-                
                 echo "El correo o el cif pertenece a otro usuario";
-                
             }   
         } 
 } 
@@ -216,20 +211,18 @@ include "conexion.php";
             <p><strong>Email: </strong><span><?php echo $email?></span></p>
             
         </div>
+
         <div class="modal-footer"> 
             <form method="post" action="">
                 <a class="btn modal-close red" href="usuariosConfirmados.php">Cancelar</a>
                 <button class="btn waves-effect waves-light green" type="submit" name="btnDelete">Aceptar</button>
             </form>
-           
         </div>
+
     </div>
 </div>
 
-<!-- Boton Actualizar dentro del modal -->
 <?php
-
-
 // Boton Rechazar dentro del modal
 
  if(isset($_POST['btnDelete']))
@@ -248,7 +241,7 @@ include "conexion.php";
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-<!--Configuracion del Modal -->
+<!--Configuración del Modal -->
 <script>
     
     document.addEventListener('DOMContentLoaded', function(){
@@ -256,7 +249,5 @@ include "conexion.php";
         var instances = M.Modal.init(elems);
         
     });
-
-
 </script>
 </html>
