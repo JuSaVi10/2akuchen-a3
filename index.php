@@ -1,54 +1,49 @@
 <?php session_start(); include "conexion.php";
 
 $email = $_POST['email'];
-$password = $_POST['password'];
+$password =$_POST['password'];
 
-if(isset($_POST['bttn_registrar'])){
+if(isset($_POST['bbtn_registrar'])){
     header("Location: registro.php");
 }
 
 if(!empty($_POST))
 {
-    $alert = '';
-    if(empty($_POST['email'])||empty($_POST['password']))
-    {
-        $alert = '<div class="bar error"> <p class = "msg_error">Todos los campos son obligatorios</p> </div>';
-        $email = $_POST['email'];
-        $password =$_POST['password'];
-    }else{
-        $query = mysqli_query($con,"SELECT * FROM tabla_usuarios WHERE  email = '$email' and password = '$password' and estado = 'Confirmado' ");
-        $result = mysqli_fetch_array($query);
-        if($result>0){
-            header("Location: hola.html");
-        }else{
-            $query = mysqli_query($con,"SELECT * FROM tabla_usuarios WHERE  email = '$email'");
-            $result = mysqli_fetch_array($query);
-            var_dump($result);
-            if($result>0){
-                $query = mysqli_query($con,"SELECT * FROM tabla_usuarios WHERE  email = '$email' and password = '$password'");
-                $result = mysqli_fetch_array($query);
-
-                if($result>0){
-                    $alert = '<div class="bar warning"> <p class = "msg_error">Este usuario está pendiente de confirmación</p> </div>';
-                }else{
-                    $email = $_POST['email'];
-                    $password = '';
-                    $alert = '<div class="bar error"> <p class = "msg_error">Contraseña incorrecta</p> </div>';
-                }
-
+$alert = '';
+if(empty($_POST['email'])||empty($_POST['password']))
+{
+    $alert = '<div class="bar error"> <p class = "msg_error">Todos los campos son obligatorios</p> </div>';
+    $email = $_POST['email'];
+    $password =$_POST['password'];
+}else{
+    include_once "conexion.php";
+    $query = mysqli_query($con,"SELECT * FROM tabla_usuarios WHERE  email = '$email'");
+    $nr = mysqli_num_rows($query);
+    $result = mysqli_fetch_array($query);
+    
+    
+    if(($nr == 1)){
+        $password_fuerte = hash('sha512',$password);
+        if($result['password']== $password_fuerte){
+            if($result['estado']== 'Confirmado'){
+                header("Location: hola.html"); 
             }else{
-                $alert = '<div class="bar error"> <p class = "msg_error">El usuario no existe</p> </div>';
+                $alert = '<div class="bar error"> <p class = "msg_error">Este usuario está pendiente de confirmación</p> </div>';
+                $password = '';
             }
+        }else{
+            $alert = '<div class="bar error"> <p class = "msg_error">Contraseña incorrecta</p> </div>';
+            $password = '';
         }
     }else{
         $alert = '<div class="bar error"> <p class = "msg_error">El usuario no existe</p> </div>';
         $email = '';
         $password = '';
     }
-
-
 }
       
+    }
+
 
 ?>
 
@@ -104,3 +99,4 @@ if(!empty($_POST))
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>
+
