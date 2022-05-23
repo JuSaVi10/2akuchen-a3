@@ -156,8 +156,9 @@ if(!empty($_POST))
             <label for="password2">Repetir contraseña</label>
             </div>
         </div>
-        <a href="index.php" class="waves-effect waves-light btn"><i class="material-icons left">keyboard_return</i>Volver</a>
-        <button name="bttn_registrar" class="btn waves-effect waves-light btn modal-trigger green" type="submit">Registrar<i class="material-icons left">how_to_reg</i></button>
+        <button name="bttn_registrar" class="btn waves-effect waves-light btn modal-trigger green" type="submit">Registrar<i class="material-icons right">how_to_reg</i></button>
+        <a href="index.php" class="waves-effect waves-light btn"><i class="material-icons right">keyboard_return</i>Volver</a>
+        
 
         <div class="row">
             <div class="col s12">
