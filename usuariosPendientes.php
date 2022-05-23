@@ -8,8 +8,7 @@ include "conexion.php";
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usuarios pendientes</title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" type ="text/css" href="css/css.css" screen = "all" />
 </head>
 <body>
 
@@ -91,19 +90,15 @@ include "conexion.php";
 <div class="container section">
     <div id="idModal" class="modal">
         <div class="modal-content">
-            <h1>Rechazar Usuario</h1>
-            <h2>¿Seguro que quieres rechazar el siguiente usuario?</h2>
+        <h2 style="text-align:center;padding-top:20px;color:orange;">RECHAZAR USUARIO</h2>
+            <h5>¿Seguro que quieres rechazar el siguiente usuario?</h5>
             <p><strong>Nombre: </strong><span><?php echo $nombre?></span></p>
             <p><strong>Nombre de Empresa:  </strong><span><?php echo $nombre_empresa?></span></p>
             <p><strong>Cif: </strong><span><?php echo $cif?></span></p>
             <p><strong>Dirección: </strong><span><?php echo $direccion?></span></p>
             <p><strong>Email: </strong><span><?php echo $email?></span></p>
-        </div>
-        <div class="modal-footer"> 
-            <form method="post" action="">
-                <a class="btn modal-close red" href="usuariosPendientes.php">Cancelar</a>
-                <button class="btn waves-effect waves-light green" type="submit" name="btnDelete">Aceptar</button>
-            </form>
+            <a class="btn modal-close red" href="usuariosPendientes.php">Cancelar</a>
+            <button class="btn waves-effect waves-light green" type="submit" name="btnDelete">Aceptar</button>
         </div>
     </div>
 </div>
@@ -113,8 +108,8 @@ include "conexion.php";
  <div class="container section">
     <div id="idModalAceptar" class="modal">
         <div class="modal-content">
-            <h1>Aceptar usuario</h1>
-            <h2>¿Seguro que quieres aceptar el siguiente usuario?</h2>
+        <h2 style="text-align:center;padding-top:20px;color:orange;">ACEPTAR USUARIO</h2>
+            <h5>¿Seguro que quieres aceptar el siguiente usuario?</h5>
             <p><strong>Nombre: </strong><span><?php echo $nombre?></span></p>
             <p><strong>Nombre de Empresa:  </strong><span><?php echo $nombre_empresa?></span></p>
             <p><strong>Cif: </strong><span><?php echo $cif?></span></p>

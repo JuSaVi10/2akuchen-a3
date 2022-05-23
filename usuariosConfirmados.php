@@ -147,10 +147,6 @@ include "conexion.php";
         </div>
         <a class="btn modal-close red" href="usuariosConfirmados.php">Cancelar</a>
         <button class="btn waves-effect waves-light green" type="submit" name="btnUpdate">Actualizar</button>
-        <div class="modal-footer"> 
-            <form method="post" action="">
-                
-            </form>
         </div>
     </div>
 </div>
@@ -207,26 +203,18 @@ include "conexion.php";
 <div class="container section">
     <div id="idModal" class="modal">
         <div class="modal-content">
-            <h1 style="text-align:center;padding-top:20px;color:orange;">RECHAZAR USUARIO</h1>
+            <h2 style="text-align:center;padding-top:20px;color:orange;">RECHAZAR USUARIO</h2>
             <h5>¿Seguro que quieres rechazar el siguiente usuario?</h5>
             <p><strong>Nombre: </strong><span><?php echo $nombre?></span></p>
             <p><strong>Nombre de Empresa:  </strong><span><?php echo $nombre_empresa?></span></p>
             <p><strong>Cif: </strong><span><?php echo $cif?></span></p>
             <p><strong>Dirección: </strong><span><?php echo $direccion?></span></p>
             <p><strong>Email: </strong><span><?php echo $email?></span></p>
-            
-        </div>
-        <div class="modal-footer"> 
-            <form method="post" action="">
-                <a class="btn modal-close red" href="usuariosConfirmados.php">Cancelar</a>
-                <button class="btn waves-effect waves-light green" type="submit" name="btnDelete">Aceptar</button>
-            </form>
-           
+            <a class="btn modal-close red" href="usuariosConfirmados.php">Cancelar</a>
+            <button class="btn waves-effect waves-light green" type="submit" name="btnDelete">Aceptar</button>
         </div>
     </div>
 </div>
-
-<!-- Boton Actualizar dentro del modal -->
 <?php
 
 
