@@ -41,7 +41,7 @@ if(empty($_POST['email'])||empty($_POST['password']))
     }
       
     }
-    
+}
 
 if(isset($_POST['bbtn_registrar'])){
     header("Location: registro.php");
