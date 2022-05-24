@@ -28,7 +28,7 @@ if(empty($_POST['email'])||empty($_POST['password']))
             if($result['estado']== 'Confirmado'){
                 header("Location: hola.html"); 
             }else{
-                $alert = '<div class="bar error"> <p class = "msg_error">Este usuario está pendiente de confirmación</p> </div>';
+                $alert = '<div class="bar warning"> <p class = "msg_error">Este usuario está pendiente de confirmación</p> </div>';
                 $password = '';
             }
         }else{
@@ -86,8 +86,7 @@ if(empty($_POST['email'])||empty($_POST['password']))
             </div>
         </div>
         <button name="bttn_enviar" class="btn waves-effect waves-light btn modal-trigger green" type="submit">Acceder<i class="material-icons right">login</i></button>
-        <button name="bttn_registrar" class="btn waves-effect waves-light btn modal-trigger A200" type="submit">Registrar<i class="material-icons right">how_to_reg</i></button>
-
+        <a href="registro.php" class="waves-effect waves-light btn"><i class="material-icons right">how_to_reg</i>Registrar</a>
         <div class="row">
             <div class="col s12 ">
             <?php echo isset($alert) ? $alert : '' ?>
