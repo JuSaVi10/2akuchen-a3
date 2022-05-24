@@ -8,7 +8,7 @@ include "conexion.php";
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usuarios pendientes</title>
-    <link rel="stylesheet" type ="text/css" href="css/css.css" screen = "all" />
+    <link rel="stylesheet" type ="text/css" href="css/style-table.css" screen = "all" />
 </head>
 <body>
 
@@ -26,7 +26,7 @@ include "conexion.php";
             if($result>0){
         ?>
 
-        <table class="striped grey lighten-1 centered responsive-table">
+        <table id="tablaConfirmados" class="striped grey lighten-1 centered responsive-table">
             <thead>
                 <tr>
                     <th>Id</th>
@@ -35,7 +35,6 @@ include "conexion.php";
                     <th>Cif</th>
                     <th>Dirección</th>
                     <th>Email</th>
-                    <th>Password</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -52,7 +51,6 @@ include "conexion.php";
                 <td><?php echo $data['cif'] ?></td>
                 <td><?php echo $data['direccion'] ?></td>
                 <td><?php echo $data['email'] ?></td>
-                <td><?php echo $data['password'] ?></td>
                 <td>
                 <button href = "usuariosPendientes.php?<?php echo $id = $data['id'];?>" data-target="idModalAceptar" class="btn waves-effect waves-light btn modal-trigger green" type="submit">Confirmar<i class="material-icons right">check</i></button>
                 <button href = "usuariosPendientes.php?<?php echo $id = $data['id'];?>" data-target="idModal" class="btn waves-effect waves-light btn modal-trigger red" type="submit">Rechazar<i class="material-icons right">delete</i></button>
