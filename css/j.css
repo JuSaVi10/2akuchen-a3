@@ -1,0 +1,7 @@
+#idModalAceptar, #idModal, #idModalEdit{
+    border-radius: 15px;
+  }
+th{
+  color:white;
+}
+#tablaConfirmados{background-color: #AED581;}

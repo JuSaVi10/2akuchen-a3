@@ -7,7 +7,7 @@ include "conexion.php";
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type ="text/css" href="css/style-default.css" screen = "all" />
+    <link rel="stylesheet" type ="text/css" href="css/j.css" screen = "all" />
     <title>Usuarios confirmados</title>
     
 </head>
@@ -28,7 +28,7 @@ include "conexion.php";
         if($result>0){
     ?>
     
-    <table class="striped yellow darken-3 centered responsive-table">
+    <table id="tablaConfirmados" class="striped centered responsive-table">
         <thead>
             <tr>
                 <th>Id</th>
@@ -37,7 +37,6 @@ include "conexion.php";
                 <th>Cif</th>
                 <th>Dirección</th>
                 <th>Email</th>
-                <th>Password</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -52,15 +51,15 @@ include "conexion.php";
                 <td><?php echo $data['cif'] ?></td>
                 <td><?php echo $data['direccion'] ?></td>
                 <td><?php echo $data['email'] ?></td>
-                <td><?php echo $data['password'] ?></td>
                 <td>
-                    <button href = "usuariosConfirmados.php?<?php echo $id = $data['id'];?>" data-target="idModalEdit" class="btn waves-effect waves-light btn modal-trigger teal" type="submit">Editar<i class="material-icons right">edit</i></button>
-                    <button href = "usuariosConfirmados.php?<?php echo $id = $data['id'];?>" data-target="idModal" class="btn waves-effect waves-light btn modal-trigger red" type="submit">Rechazar<i class="material-icons right">delete</i></button>
+                    <button href = "usuariosConfirmados.php?idusuario=<?php echo $id = $data['id'];?>" data-target="idModalEdit" class="btn waves-effect waves-light btn modal-trigger teal" type="submit">Editar<i class="material-icons right">edit</i></button>
+                    <button href = "usuariosConfirmados.php?idusuario=<?php echo $id = $data['id'];?>" data-target="idModal" class="btn waves-effect waves-light btn modal-trigger red" type="submit">Rechazar<i class="material-icons right">delete</i></button>
                 </td>
             </tr>
         </tbody>
         <?php
                 echo $alert;
+                
             ?>
         <?php
 
@@ -86,7 +85,6 @@ include "conexion.php";
                 }
             }
             ?>
-
     </table>
 </div>
     <!-- Vista del Modal de Editar Confirmados-->
@@ -209,7 +207,10 @@ include "conexion.php";
             <p><strong>Nombre de Empresa:  </strong><span><?php echo $nombre_empresa?></span></p>
             <p><strong>Cif: </strong><span><?php echo $cif?></span></p>
             <p><strong>Dirección: </strong><span><?php echo $direccion?></span></p>
-            <p><strong>Email: </strong><span><?php echo $email?></span></p>            
+            <p><strong>Email: </strong><span><?php echo $email?></span></p>
+
+            <a class="btn modal-close red" href="usuariosConfirmados.php">Cancelar</a>
+            <button class="btn waves-effect waves-light green" type="submit" name="btnDelete">Aceptar</button>
         </div>
 
         <div class="modal-footer"> 
