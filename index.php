@@ -1,15 +1,15 @@
 <?php session_start(); include "conexion.php";
 
 $email = $_POST['email'];
-$password =$_POST['password'];
-
-if(isset($_POST['bbtn_registrar'])){
-    header("Location: registro.php");
-}
+$password = $_POST['password'];
 
 if(!empty($_POST))
 {
-    $alert = '';
+if(isset($_POST['bbtn_registrar'])){
+    header("Location: registro.php");
+}
+$alert = '';
+
     if(empty($_POST['email'])||empty($_POST['password']))
     {
         $alert = '<div class="bar error"> <p class = "msg_error">Todos los campos son obligatorios</p> </div>';
@@ -17,11 +17,11 @@ if(!empty($_POST))
         $password =$_POST['password'];
     }else{
             include_once "conexion.php";
-            $query = mysqli_query($con,"SELECT * FROM tabla_usuarios WHERE  email = '$email'");
+            $query = mysqli_query($con,"SELECT * FROM tabla_usuarios WHERE email = '$email'");
             $nr = mysqli_num_rows($query);
             $result = mysqli_fetch_array($query);
 
-            if(($nr == 1)){
+            if($result > 0){
                 $password_fuerte = hash('sha512',$password);
                 if($result['password']== $password_fuerte){
                     if($result['estado'] == 'Confirmado'){
@@ -34,18 +34,11 @@ if(!empty($_POST))
                     $password = '';
                 }
             }else{
-                $alert = '<div class="bar warning"> <p class = "msg_error">Este usuario está pendiente de confirmación</p> </div>';
+                $alert = '<div class="bar error"> <p class = "msg_error">El usuario no existe</p> </div>';
                 $password = '';
             }
         }
 }
-      
-    }
-    }else{
-        $alert = '<div class="bar error"> <p class = "msg_error">El usuario no existe</p> </div>';
-        $email = '';
-        $password = '';
-    }
 
 
 ?>
