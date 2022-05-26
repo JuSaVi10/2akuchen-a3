@@ -12,13 +12,13 @@ include "SED.php";
     <title>Usuarios confirmados</title>
     
 </head>
-
 <body>
 
 <!-- Cabecera -->
 <?php
     include("header.php");
 ?>
+<!-- .............. -->
 
 <h3 style="text-align:center">LISTA DE USUARIOS CONFIRMADOS</h3>
 <div class="container">
@@ -67,9 +67,6 @@ include "SED.php";
         </tbody>
         <?php
                 echo $alert;
-            ?>
-        <?php
-
             }
             }else{
                 echo "<p>No hay usuarios confirmados</p>";
@@ -85,9 +82,6 @@ include "SED.php";
         
     <div class="class_h2">
         <h2 style="font-weight:normal;text-align:center;padding-top:20px;color:orange;">EDITAR</h2>
-        <div class="uvc-heading-spacer line_only" >
-            <span class="uvc-headings-line" ></span>
-        </div>
     </div>
 
 <div class = "container center">
