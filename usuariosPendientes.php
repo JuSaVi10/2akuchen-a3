@@ -16,14 +16,14 @@ include "conexion.php";
 <?php
     include("header.php");
 ?>
+<!-- ...................... -->
 
     <h3 style="text-align:center;">LISTA DE USUARIOS PENDIENTES</h3>
     <div class="container">
         <?php
-            $query = mysqli_query($con, "SELECT * FROM tabla_usuarios WHERE tabla_usuarios.estado = 'Pendiente'");
-            $result = mysqli_num_rows($query);
-            
-            if($result>0){
+            $query = "SELECT * FROM tabla_usuarios WHERE tabla_usuarios.estado = 'Pendiente'";
+            $result = mysqli_query($con, $query);
+            $alert = '';
         ?>
 
         <table id="tablaConfirmados" class="striped grey lighten-1 centered responsive-table">
@@ -40,9 +40,9 @@ include "conexion.php";
             </thead>
 
         <?php
-            while($data = mysqli_fetch_array($query)){
+        if($result){
+            foreach($result as $data){
         ?>
-
         <tbody>
             <tr>
                 <td><?php echo $data['id'] ?></td>
@@ -57,13 +57,14 @@ include "conexion.php";
                 </td>
             </tr>
         </tbody>
-        
         <?php
+             echo $alert;
             }
             }else{
                 echo '<p class="parrafo">No hay usuarios para confirmar</p>';
             }
             ?>
+
         </table>
     </div>
 
@@ -73,17 +74,17 @@ include "conexion.php";
         <div class="modal-content">
         <h2 style="text-align:center;padding-top:20px;color:orange;">RECHAZAR USUARIO</h2>
             <h5>¿Seguro que quieres rechazar el siguiente usuario?</h5>
-            <p><strong>Nombre: </strong><span id="nombre"></span></p>
-            <p><strong>Nombre de Empresa:  </strong><span id="nombre_empresa"></span></p>
-            <p><strong>Cif: </strong><span id="cif"></span></p>
-            <p><strong>Dirección: </strong><span id="direccion"></span></p>
-            <p><strong>Email: </strong><span id="email"></span></p>
+            <p><strong>Nombre: </strong><span id="nombre2"></span></p>
+            <p><strong>Nombre de Empresa:  </strong><span id="nombre_empresa2"></span></p>
+            <p><strong>Cif: </strong><span id="cif2"></span></p>
+            <p><strong>Dirección: </strong><span id="direccion2"></span></p>
+            <p><strong>Email: </strong><span id="email2"></span></p>
             <a class="btn modal-close red" href="usuariosPendientes.php">Cancelar</a>
             <button class="btn waves-effect waves-light green" type="submit" name="btnDelete">Aceptar</button>
         </div>
     </div>
 </div>
-
+<!-- .......................................................... -->
 
  <!-- Vista del Modal de Aceptar Pendientes-->
  <div class="container section">
@@ -91,11 +92,11 @@ include "conexion.php";
         <div class="modal-content">
         <h2 style="text-align:center;padding-top:20px;color:orange;">ACEPTAR USUARIO</h2>
             <h5>¿Seguro que quieres aceptar el siguiente usuario?</h5>
-            <p><strong>Nombre: </strong><span id="nombre2"></span></p>
-            <p><strong>Nombre de Empresa:  </strong><span id="nombre_empresa2"></span></p>
-            <p><strong>Cif: </strong><span id="cif2"></span></p>
-            <p><strong>Dirección: </strong><span id="direccion2"></span></p>
-            <p><strong>Email: </strong><span id="email2"></span></p>
+            <p><strong>Nombre: </strong><span id="nombre"></span></p>
+            <p><strong>Nombre de Empresa:  </strong><span id="nombre_empresa"></span></p>
+            <p><strong>Cif: </strong><span id="cif"></span></p>
+            <p><strong>Dirección: </strong><span id="direccion"></span></p>
+            <p><strong>Email: </strong><span id="email"></span></p>
         </div>
         <div class="modal-footer"> 
             <form method="post" action="">
@@ -105,6 +106,7 @@ include "conexion.php";
         </div>
     </div>
 </div>
+<!-- .............................................. -->
 
 <?php
 
@@ -131,6 +133,7 @@ if(isset($_POST['btnConfirm'])){
     }
  }
 ?>
+
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <!-- ................................................................................................... -->
@@ -160,6 +163,8 @@ $(document).ready(function(){
             return $(this).text();
         }).get();
 
+        console.log(data);
+
         $('#nombre').text(data[1]);
         $('#nombre_empresa').text(data[2]);
         $('#cif').text(data[3]);
@@ -174,7 +179,8 @@ $(document).ready(function(){
         var data = $tr.children("td").map(function(){
             return $(this).text();
         }).get();
-        
+        console.log(data);
+
         $('#nombre2').text(data[1]);
         $('#nombre_empresa2').text(data[2]);
         $('#cif2').text(data[3]);
