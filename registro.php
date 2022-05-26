@@ -53,7 +53,6 @@ if(!empty($_POST))
                     $valid = true;
                     if($password == $password2 && $valid == true){
                         $encrypt_password = secure::encrypt($password);
-                        echo $encrypt_password . "<br />";
                         $query_insert = mysqli_query($con, "INSERT INTO tabla_usuarios(nombre,nombre_empresa,cif,direccion,email,password)VALUES('$nombre','$empresa','$cif','$direccion','$email','$encrypt_password')");
                         }else{
                             $alert = '<div class="bar error"> <p class = "msg_error">Las contraseñas no coinciden</p> </div>';

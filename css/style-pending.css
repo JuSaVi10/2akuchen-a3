@@ -1,5 +1,4 @@
-
-  .bar {
+.bar {
     margin-top: 10px;
     color: #333;
     background: #fafafa;
@@ -28,3 +27,7 @@
     color:white;
   }
 #tablaConfirmados{background-color: #AED581;}
+
+.parrafo{
+  text-align: center;
+}

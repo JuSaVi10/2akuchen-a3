@@ -8,7 +8,7 @@ include "conexion.php";
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usuarios pendientes</title>
-    <link rel="stylesheet" type ="text/css" href="css/style-table.css" screen = "all" />
+    <link rel="stylesheet" type ="text/css" href="css/style-pending.css" screen = "all" />
 </head>
 <body>
 
@@ -20,7 +20,7 @@ include "conexion.php";
     <h3 style="text-align:center;">LISTA DE USUARIOS PENDIENTES</h3>
     <div class="container">
         <?php
-            $query = mysqli_query($con, "SELECT tabla_usuarios.id,tabla_usuarios.nombre,tabla_usuarios.nombre_empresa,tabla_usuarios.cif,tabla_usuarios.direccion,tabla_usuarios.email,tabla_usuarios.password FROM tabla_usuarios WHERE tabla_usuarios.estado = 'Pendiente'");
+            $query = mysqli_query($con, "SELECT * FROM tabla_usuarios WHERE tabla_usuarios.estado = 'Pendiente'");
             $result = mysqli_num_rows($query);
             
             if($result>0){
@@ -52,8 +52,8 @@ include "conexion.php";
                 <td><?php echo $data['direccion'] ?></td>
                 <td><?php echo $data['email'] ?></td>
                 <td>
-                <button href = "usuariosPendientes.php?<?php echo $id = $data['id'];?>" data-target="idModalAceptar" class="btn waves-effect waves-light btn modal-trigger green" type="submit">Confirmar<i class="material-icons right">check</i></button>
-                <button href = "usuariosPendientes.php?<?php echo $id = $data['id'];?>" data-target="idModal" class="btn waves-effect waves-light btn modal-trigger red" type="submit">Rechazar<i class="material-icons right">delete</i></button>
+                <button data-target="idModalAceptar" class="btn waves-effect waves-light btn modal-trigger green confirmbtn" type="submit">Confirmar<i class="material-icons right">check</i></button>
+                <button data-target="idModal" class="btn waves-effect waves-light btn modal-trigger red deletebtn" type="submit">Rechazar<i class="material-icons right">delete</i></button>
                 </td>
             </tr>
         </tbody>
@@ -61,24 +61,7 @@ include "conexion.php";
         <?php
             }
             }else{
-                echo "No hay usuarios para confirmar";
-            }
-
-            if($result>0){
-            $query = "SELECT tabla_usuarios.nombre,tabla_usuarios.nombre_empresa,tabla_usuarios.cif,tabla_usuarios.direccion,tabla_usuarios.email,tabla_usuarios.estado FROM tabla_usuarios WHERE tabla_usuarios.id = $id";
-            $resultado = mysqli_query($con, $query);
-            $num_row = mysqli_num_rows($resultado);
-                if($num_row>0){
-                    while( $data = mysqli_fetch_array($resultado)){
-                        $nombre = $data['nombre'];
-                        $nombre_empresa = $data['nombre_empresa'];
-                        $cif = $data['cif'];
-                        $direccion = $data['direccion'];
-                        $email = $data['email'];
-                    }
-                }else{
-                    header("location: usuariosPendientes.php");
-                }
+                echo '<p class="parrafo">No hay usuarios para confirmar</p>';
             }
             ?>
         </table>
@@ -90,11 +73,11 @@ include "conexion.php";
         <div class="modal-content">
         <h2 style="text-align:center;padding-top:20px;color:orange;">RECHAZAR USUARIO</h2>
             <h5>¿Seguro que quieres rechazar el siguiente usuario?</h5>
-            <p><strong>Nombre: </strong><span><?php echo $nombre?></span></p>
-            <p><strong>Nombre de Empresa:  </strong><span><?php echo $nombre_empresa?></span></p>
-            <p><strong>Cif: </strong><span><?php echo $cif?></span></p>
-            <p><strong>Dirección: </strong><span><?php echo $direccion?></span></p>
-            <p><strong>Email: </strong><span><?php echo $email?></span></p>
+            <p><strong>Nombre: </strong><span id="nombre"></span></p>
+            <p><strong>Nombre de Empresa:  </strong><span id="nombre_empresa"></span></p>
+            <p><strong>Cif: </strong><span id="cif"></span></p>
+            <p><strong>Dirección: </strong><span id="direccion"></span></p>
+            <p><strong>Email: </strong><span id="email"></span></p>
             <a class="btn modal-close red" href="usuariosPendientes.php">Cancelar</a>
             <button class="btn waves-effect waves-light green" type="submit" name="btnDelete">Aceptar</button>
         </div>
@@ -108,11 +91,11 @@ include "conexion.php";
         <div class="modal-content">
         <h2 style="text-align:center;padding-top:20px;color:orange;">ACEPTAR USUARIO</h2>
             <h5>¿Seguro que quieres aceptar el siguiente usuario?</h5>
-            <p><strong>Nombre: </strong><span><?php echo $nombre?></span></p>
-            <p><strong>Nombre de Empresa:  </strong><span><?php echo $nombre_empresa?></span></p>
-            <p><strong>Cif: </strong><span><?php echo $cif?></span></p>
-            <p><strong>Dirección: </strong><span><?php echo $direccion?></span></p>
-            <p><strong>Email: </strong><span><?php echo $email?></span></p>
+            <p><strong>Nombre: </strong><span id="nombre2"></span></p>
+            <p><strong>Nombre de Empresa:  </strong><span id="nombre_empresa2"></span></p>
+            <p><strong>Cif: </strong><span id="cif2"></span></p>
+            <p><strong>Dirección: </strong><span id="direccion2"></span></p>
+            <p><strong>Email: </strong><span id="email2"></span></p>
         </div>
         <div class="modal-footer"> 
             <form method="post" action="">
@@ -139,7 +122,7 @@ include "conexion.php";
 
 // Boton Confirmar dentro del Modal 
 if(isset($_POST['btnConfirm'])){
-    $query_update ="UPDATE tabla_usuarios SET estado = 'Confirmado' WHERE id =$id";
+    $query_update ="UPDATE tabla_usuarios SET estado = 'Confirmado' WHERE id = $id";
     $result = mysqli_query($con,$query_update);
     if($query_update){
         echo"<script>window.location.href='usuariosPendientes.php';</script>";
@@ -150,6 +133,7 @@ if(isset($_POST['btnConfirm'])){
 ?>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<!-- ................................................................................................... -->
 
 <!--Configuracion del Modal -->
 <script>
@@ -157,9 +141,47 @@ if(isset($_POST['btnConfirm'])){
     document.addEventListener('DOMContentLoaded', function(){
         var elems = document.querySelectorAll('.modal');
         var instances = M.Modal.init(elems);
-        
     });
 
+</script>
+<!-- ...................................................... -->
+
+<!-- Compiled and minified JQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Mostrar los datos de los usuarios en los modals -->
+<script> 
+$(document).ready(function(){
+    $('.confirmbtn').on('click', function(){
+
+        $tr = $(this.closest('tr'));
+
+        var data = $tr.children("td").map(function(){
+            return $(this).text();
+        }).get();
+
+        $('#nombre').text(data[1]);
+        $('#nombre_empresa').text(data[2]);
+        $('#cif').text(data[3]);
+        $('#direccion').text(data[4]);
+        $('#email').text(data[5]);
+    });
+
+    $('.deletebtn').on('click', function(){
+
+        $tr = $(this.closest('tr'));
+
+        var data = $tr.children("td").map(function(){
+            return $(this).text();
+        }).get();
+        
+        $('#nombre2').text(data[1]);
+        $('#nombre_empresa2').text(data[2]);
+        $('#cif2').text(data[3]);
+        $('#direccion2').text(data[4]);
+        $('#email2').text(data[5]);
+    });
+});
 </script>
 
 </html>

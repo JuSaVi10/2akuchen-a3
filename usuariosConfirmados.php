@@ -57,12 +57,11 @@ include "SED.php";
                 <?php 
                 $pass= $data['password'];
                 $encrypt_data = secure::decrypt($pass);
-                echo $encrypt_data;
                 ?>
                 <td><?php echo $encrypt_data?></td>
                 <td>
                     <button data-target="idModalEdit" class="btn waves-effect waves-light btn modal-trigger teal editbtn" type="submit">Editar<i class="material-icons right">edit</i></button>
-                    <button data-target="idModal" class="btn waves-effect waves-light btn modal-trigger red" type="submit">Rechazar<i class="material-icons right">delete</i></button>
+                    <button data-target="idModal" class="btn waves-effect waves-light btn modal-trigger red deletebtn" type="submit">Rechazar<i class="material-icons right">delete</i></button>
                 </td>
             </tr>
         </tbody>
@@ -73,7 +72,7 @@ include "SED.php";
 
             }
             }else{
-                echo "No hay usuarios para confirmar";
+                echo "<p>No hay usuarios confirmados</p>";
             }
             ?>
 
@@ -202,11 +201,11 @@ include "SED.php";
         <div class="modal-content">
             <h1 style="text-align:center;padding-top:20px;color:orange;">RECHAZAR USUARIO</h1>
             <h5>¿Seguro que quieres rechazar el siguiente usuario?</h5>
-            <p><strong>Nombre: </strong><span><?php echo $nombre?></span></p>
-            <p><strong>Nombre de Empresa:  </strong><span><?php echo $nombre_empresa?></span></p>
-            <p><strong>Cif: </strong><span><?php echo $cif?></span></p>
-            <p><strong>Dirección: </strong><span><?php echo $direccion?></span></p>
-            <p><strong>Email: </strong><span><?php echo $email?></span></p>
+            <p ><strong>Nombre: </strong><span id="nombre2"></span></p>
+            <p><strong>Nombre de Empresa:  </strong><span id="nombre_empresa2"></span></p>
+            <p><strong>Cif: </strong><span id="cif2"></span></p>
+            <p><strong>Dirección: </strong><span id="direccion2"></span></p>
+            <p><strong>Email: </strong><span id="email2"></span></p>
             
         </div>
         <div class="modal-footer"> 
@@ -235,7 +234,7 @@ include "SED.php";
 
 </body>
 
-
+<!-- Compiled and minified JQuery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <!-- Compiled and minified JavaScript -->
@@ -250,6 +249,8 @@ include "SED.php";
 
 </script>
 
+<!-- Mostrar los datos de los usuarios en los modals --> 
+
 <script> 
 $(document).ready(function(){
     $('.editbtn').on('click', function(){
@@ -260,7 +261,7 @@ $(document).ready(function(){
             return $(this).text();
         }).get();
 
-        console.log(data);
+        //console.log(data);
 
         $('#id').val(data[0]);
         $('#nombre').val(data[1]);
@@ -269,6 +270,21 @@ $(document).ready(function(){
         $('#direccion').val(data[4]);
         $('#email').val(data[5]);
         $('#password').val(data[6]);
+    });
+
+    $('.deletebtn').on('click', function(){
+
+        $tr = $(this.closest('tr'));
+
+        var data = $tr.children("td").map(function(){
+            return $(this).text();
+        }).get();
+
+        $('#nombre2').text(data[1]);
+        $('#nombre_empresa2').text(data[2]);
+        $('#cif2').text(data[3]);
+        $('#direccion2').text(data[4]);
+        $('#email2').text(data[5]);
     });
 });
 </script>
