@@ -146,54 +146,7 @@ include "SED.php";
 </div>
  <!-- ···················································································································································································· -->
 
-<?php
- if(isset($_POST['btnUpdate']))
- {
-        if(empty($_POST['nombre'])||empty($_POST['nombre_empresa'])||empty($_POST['cif'])||empty($_POST['direccion'])||empty($_POST['email'])||empty($_POST['password'])){
-            echo "Todos los campos son obligatorios";
-        }else{
-            $id = $_POST['id'];
-            $nombre =  $_POST['nombre'] ;
-            $nombre_empresa = $_POST['nombre_empresa'];
-            $cif = $_POST['cif'];
-            $direccion = $_POST['direccion'];
-            $email = $_POST['email'];
-            $password =$_POST['password'];
-    
-            $query = mysqli_query($con,"SELECT * FROM tabla_usuarios WHERE  email = '$email' or cif = '$cif' ");
-            $result = mysqli_fetch_array($query);
-    
-            $query_comprobar = mysqli_query($con,"SELECT * FROM tabla_usuarios WHERE  email = '$email' or cif = '$cif' and id is not '$id' ");
-            $result2 = mysqli_fetch_array($query);
 
-            $patronCIF= "/^([ABCDEFGHJKLMNPQRSUVW])(\d{7})([0-9A-J])$/";
-            $patronPass = "/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/";
-            if(!preg_match($patronCIF,$_POST['cif'])){
-                $alert = '<div class="bar error"> <p class = "msg_error">El formato CIF no es válido</p> </div> <br>';            
-            }
-
-            
-            if(!preg_match($patronPass,$_POST['password'])){
-                $alert = '<div class="bar error"> <p class = "msg_error">La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula.</p> </div> <br>';            
-            }
- 
-            if($result2 == 1){
-                $encrypt_password = secure::encrypt($password);
-                $query_update = mysqli_query($con, "UPDATE tabla_usuarios set nombre = '$nombre',nombre_empresa = '$nombre_empresa',cif = '$cif', direccion = '$direccion' ,email = '$email', password = '$encrypt_password' WHERE id = '$id' ");
-                if($query_update){
-                    echo"<script>window.location.href='usuariosConfirmados.php';</script>";
-                }else{
-                    echo "Actualización fallida";
-                }
-            }else{
-                
-                echo "El correo o el cif pertenece a otro usuario";
-                
-            }   
-        } 
-} 
-
-?>
 
     <!-- Vista del Modal de Rechazar Confirmados-->
 <div class="container section">
@@ -216,6 +169,51 @@ include "SED.php";
         </div>
     </div>
 </div>
+<?php
+ if(isset($_POST['btnUpdate']))
+ {
+        if(empty($_POST['nombre'])||empty($_POST['nombre_empresa'])||empty($_POST['cif'])||empty($_POST['direccion'])||empty($_POST['email'])||empty($_POST['password'])){
+            echo "Todos los campos son obligatorios";
+        }else{
+            $id = $_POST['id'];
+            $nombre =  $_POST['nombre'] ;
+            $nombre_empresa = $_POST['nombre_empresa'];
+            $cif = $_POST['cif'];
+            $direccion = $_POST['direccion'];
+            $email = $_POST['email'];
+            $password =$_POST['password'];
+    
+            $query_comprobar = mysqli_query($con,"SELECT * FROM tabla_usuarios WHERE  email = '$email' or cif = '$cif' and id is not '$id' ");
+            $result2 = mysqli_fetch_array($query);
+
+            $patronCIF= "/^([ABCDEFGHJKLMNPQRSUVW])(\d{7})([0-9A-J])$/";
+            $patronPass = "/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/";
+            if(!preg_match($patronCIF,$_POST['cif'])){
+                $alert = '<div class="bar error"> <p class = "msg_error">El formato CIF no es válido</p> </div> <br>';            
+            }
+
+            
+            if(!preg_match($patronPass,$_POST['password'])){
+                $alert = '<div class="bar error"> <p class = "msg_error">La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula.</p> </div> <br>';            
+            }
+ 
+            if($result2 == 0){
+                $encrypt_password = secure::encrypt($password);
+                $query_update = mysqli_query($con, "UPDATE tabla_usuarios set nombre = '$nombre',nombre_empresa = '$nombre_empresa',cif = '$cif', direccion = '$direccion' ,email = '$email', password = '$encrypt_password' WHERE id = '$id' ");
+                if($query_update){
+                    echo"<script>window.location.href='usuariosConfirmados.php';</script>";
+                }else{
+                    echo "Actualización fallida";
+                }
+            }else{
+                
+                echo "El correo o el cif pertenece a otro usuario";
+                
+            }   
+        } 
+} 
+
+?>
 
 <?php
 // Boton Rechazar dentro del modal
