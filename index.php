@@ -1,4 +1,4 @@
-<?php session_start(); include "conexion.php";
+!<?php session_start(); include "conexion.php";
 
 $email = $_POST['email'];
 $password = $_POST['password'];

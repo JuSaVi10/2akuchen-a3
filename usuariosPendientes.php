@@ -14,7 +14,7 @@ include "conexion.php";
 
 <!-- Cabecera -->
 <?php
-    include("header.html");
+    include("header.php");
 ?>
 
     <h3 style="text-align:center;">LISTA DE USUARIOS PENDIENTES</h3>
