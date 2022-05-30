@@ -25,6 +25,7 @@
         <li><a href="inicio.php">INICIO</a></li>
         <li><a href="usuariosConfirmados.php">USUARIOS CONFIRMADOS</a></li>
         <li><a href="usuariosPendientes.php">USUARIOS PENDIENTES</a></li>
+        <li ><a href="/index.php"class="waves-effect waves-light btn green lighten-3">Cerrar Sesión <i class="material-icons right">exit_to_app</i></a></li>
       </ul>
     </div>
 </nav>
@@ -33,6 +34,7 @@
   <li><a href="inicio.php">INICIO</a></li>
   <li><a href="usuariosConfirmados.php">USUARIOS CONFIRMADOS</a></li>
   <li><a href="usuariosPendientes.php">USUARIOS PENDIENTES</a></li>
+  <li><a href="stopLindano/index.php"class="waves-effect waves-light btn green lighten-3">Cerrar Sesión <i class="material-icons right">exit_to_app</i></a></li>
 </ul>
 
 <!-- Compiled and minified JavaScript -->
