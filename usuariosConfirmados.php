@@ -77,6 +77,7 @@ include "SED.php";
 </div>
 
     <!-- Vista del Modal de Editar Confirmados-->
+    
     <div class="container section">
     <div id="idModalEdit" class="modal">
         
@@ -146,8 +147,10 @@ include "SED.php";
 <div class="container section">
     <div id="idModal" class="modal">
         <div class="modal-content">
+        <form method="post" action="">
             <h1 style="text-align:center;padding-top:20px;color:orange;">RECHAZAR USUARIO</h1>
             <h5>¿Seguro que quieres rechazar el siguiente usuario?</h5>
+            <input type="hidden" name="id2" id="id2">
             <p ><strong>Nombre: </strong><span id="nombre2"></span></p>
             <p><strong>Nombre de Empresa:  </strong><span id="nombre_empresa2"></span></p>
             <p><strong>Cif: </strong><span id="cif2"></span></p>
@@ -156,14 +159,15 @@ include "SED.php";
             
         </div>
         <div class="modal-footer"> 
-            <form method="post" action="">
+        <form method="post" action="">
                 <a class="btn modal-close red" href="usuariosConfirmados.php">Cancelar</a>
                 <button class="btn waves-effect waves-light green" type="submit" name="btnDelete">Aceptar</button>
-            </form>
+        </form>
         </div>
     </div>
 </div>
 <?php
+
  if(isset($_POST['btnUpdate']))
  {
         if(empty($_POST['nombre'])||empty($_POST['nombre_empresa'])||empty($_POST['cif'])||empty($_POST['direccion'])||empty($_POST['email'])||empty($_POST['password'])){
@@ -177,33 +181,51 @@ include "SED.php";
             $email = $_POST['email'];
             $password =$_POST['password'];
     
-            $query_comprobar = mysqli_query($con,"SELECT * FROM tabla_usuarios WHERE  email = '$email' or cif = '$cif' and id is not '$id' ");
-            $result2 = mysqli_fetch_array($query);
+            $query_comprobar = mysqli_query($con,"SELECT * FROM tabla_usuarios WHERE cif = '$cif' and id != '$id' ");
+            $result2 = mysqli_fetch_array($query_comprobar);
+            
+
+            $query_comprobar2 = mysqli_query($con,"SELECT * FROM tabla_usuarios WHERE email = '$email' and id != '$id' ");
+            $result3 = mysqli_fetch_array($query_comprobar2);
+            
+
+            
 
             $patronCIF= "/^([ABCDEFGHJKLMNPQRSUVW])(\d{7})([0-9A-J])$/";
             $patronPass = "/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/";
             if(!preg_match($patronCIF,$_POST['cif'])){
-                $alert = '<div class="bar error"> <p class = "msg_error">El formato CIF no es válido</p> </div> <br>';            
-            }
-
-            
-            if(!preg_match($patronPass,$_POST['password'])){
-                $alert = '<div class="bar error"> <p class = "msg_error">La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula.</p> </div> <br>';            
+                $alert = '<div class="bar error"> <p class = "msg_error">El formato CIF no es válido</p> </div> <br>'; 
+                echo $alert;           
+            }else{
+                if(!preg_match($patronPass,$_POST['password'])){
+                    $alert = '<div class="bar error"> <p class = "msg_error">La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula.</p> </div> <br>';            
+                    echo $alert;
+                }else{
+                    if($result2 < 2 ){
+                        if($result3 < 2){
+                            $encrypt_password = secure::encrypt($password);
+                            $query_update = mysqli_query($con, "UPDATE tabla_usuarios set nombre = '$nombre',nombre_empresa = '$nombre_empresa',cif = '$cif', direccion = '$direccion' ,email = '$email', password = '$encrypt_password' WHERE id = '$id' ");
+                            if($query_update){
+                                echo"<script>window.location.href='usuariosConfirmados.php';</script>";
+                                var_dump($result2);
+                                
+                            }else{
+                                echo "Actualización fallida";
+                            }
+                        }else{
+                            echo "El correo pertenece a otro usuario <br>";
+                        }
+                       
+                    }else{
+                        echo "El cif pertenece a otro usuario <br>";
+                        
+                        echo $email;
+                        var_dump($result3);
+                        
+                    }  
+                }
             }
  
-            if($result2 == 0){
-                $encrypt_password = secure::encrypt($password);
-                $query_update = mysqli_query($con, "UPDATE tabla_usuarios set nombre = '$nombre',nombre_empresa = '$nombre_empresa',cif = '$cif', direccion = '$direccion' ,email = '$email', password = '$encrypt_password' WHERE id = '$id' ");
-                if($query_update){
-                    echo"<script>window.location.href='usuariosConfirmados.php';</script>";
-                }else{
-                    echo "Actualización fallida";
-                }
-            }else{
-                
-                echo "El correo o el cif pertenece a otro usuario";
-                
-            }   
         } 
 } 
 
@@ -214,8 +236,9 @@ include "SED.php";
 
  if(isset($_POST['btnDelete']))
  {
-    $query_delete = "DELETE from tabla_usuarios WHERE id = $id";
-    $result = mysqli_query($con, $query_delete);
+   $id = $_POST['id2'];
+    $query_delete = "DELETE  from tabla_usuarios WHERE id = $id";
+    $result = mysqli_query($con,$query_delete);
      if($query_delete){
         echo"<script>window.location.href='usuariosConfirmados.php';</script>";
         }else{
@@ -272,6 +295,7 @@ $(document).ready(function(){
             return $(this).text();
         }).get();
 
+        $('#id2').val(data[0]);
         $('#nombre2').text(data[1]);
         $('#nombre_empresa2').text(data[2]);
         $('#cif2').text(data[3]);

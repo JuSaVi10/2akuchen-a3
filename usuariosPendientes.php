@@ -74,13 +74,19 @@ include "conexion.php";
         <div class="modal-content">
         <h2 style="text-align:center;padding-top:20px;color:orange;">RECHAZAR USUARIO</h2>
             <h5>¿Seguro que quieres rechazar el siguiente usuario?</h5>
+            <form method="post" action="">
+            <input type="hidden" name="id2" id="id2">
             <p><strong>Nombre: </strong><span id="nombre2"></span></p>
             <p><strong>Nombre de Empresa:  </strong><span id="nombre_empresa2"></span></p>
             <p><strong>Cif: </strong><span id="cif2"></span></p>
             <p><strong>Dirección: </strong><span id="direccion2"></span></p>
             <p><strong>Email: </strong><span id="email2"></span></p>
-            <a class="btn modal-close red" href="usuariosPendientes.php">Cancelar</a>
-            <button class="btn waves-effect waves-light green" type="submit" name="btnDelete">Aceptar</button>
+        </div>
+        <div class="modal-footer"> 
+        <form method="post" action="">
+                <a class="btn modal-close red" href="usuariosPendientes.php">Cancelar</a>
+                <button class="btn waves-effect waves-light green" type="submit" name="btnDelete">Aceptar</button>
+        </form>
         </div>
     </div>
 </div>
@@ -113,9 +119,10 @@ include "conexion.php";
 // Boton Rechazar dentro del modal
  if(isset($_POST['btnDelete']))
  {
+    $id = $_POST['id2'];
     $query_delete = "DELETE from tabla_usuarios WHERE id = $id";
     $result = mysqli_query($con, $query_delete);
-     if($query_delete){
+     if($result){
         echo"<script>window.location.href='usuariosPendientes.php';</script>";
         }else{
         echo "Error al rechazar";
@@ -124,6 +131,7 @@ include "conexion.php";
 
 // Boton Confirmar dentro del Modal 
 if(isset($_POST['btnConfirm'])){
+    $id = $data['id'];
     $query_update ="UPDATE tabla_usuarios SET estado = 'Confirmado' WHERE id = $id";
     $result = mysqli_query($con,$query_update);
     if($query_update){
@@ -180,7 +188,7 @@ $(document).ready(function(){
             return $(this).text();
         }).get();
         console.log(data);
-
+        $('#id2').val(data[0]);
         $('#nombre2').text(data[1]);
         $('#nombre_empresa2').text(data[2]);
         $('#cif2').text(data[3]);

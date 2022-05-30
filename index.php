@@ -1,4 +1,5 @@
 !<?php session_start(); include "conexion.php";
+include 'SED.php';
 
 $email = $_POST['email'];
 $password = $_POST['password'];
@@ -22,7 +23,7 @@ $alert = '';
             $result = mysqli_fetch_array($query);
 
             if($result > 0){
-                $password_fuerte = hash('sha512',$password);
+                $password_fuerte = secure::encrypt($password);
                 if($result['password']== $password_fuerte){
                     if($result['estado'] == 'Confirmado'){
                         header("Location: hola.html"); 
@@ -31,6 +32,7 @@ $alert = '';
                     }
                 }else{
                     $alert = '<div class="bar error"> <p class = "msg_error">Contraseña incorrecta</p> </div>';
+                    echo $password_fuerte;
                     $password = '';
                 }
             }else{
