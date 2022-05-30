@@ -148,6 +148,7 @@ include "SED.php";
         <div class="modal-content">
             <h1 style="text-align:center;padding-top:20px;color:orange;">RECHAZAR USUARIO</h1>
             <h5>¿Seguro que quieres rechazar el siguiente usuario?</h5>
+            <input type="hidden" name="id" id="id2">
             <p ><strong>Nombre: </strong><span id="nombre2"></span></p>
             <p><strong>Nombre de Empresa:  </strong><span id="nombre_empresa2"></span></p>
             <p><strong>Cif: </strong><span id="cif2"></span></p>
@@ -271,7 +272,8 @@ $(document).ready(function(){
         var data = $tr.children("td").map(function(){
             return $(this).text();
         }).get();
-
+        
+        $('#id2').val(data[0]);
         $('#nombre2').text(data[1]);
         $('#nombre_empresa2').text(data[2]);
         $('#cif2').text(data[3]);
